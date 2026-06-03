@@ -1,0 +1,47 @@
+{
+  "timestamp": "2026-06-03T11:00:35.501572+00:00",
+  "stats": {
+    "evaluation_steps": 39,
+    "anchors_deployed": 1,
+    "dc_assignments": 3,
+    "dc_smart_skipped": 0,
+    "cost_benefit_rejections": 0,
+    "errors": 0,
+    "total_ho_events": 78,
+    "hos_avoided": 10
+  },
+  "ppp_threshold": 0.65,
+  "active_anchors": {
+    "AnchorGNB-1": {
+      "x": 317.0,
+      "y": 150.0,
+      "cluster_ues": [
+        "UE-1",
+        "UE-2",
+        "UE-3"
+      ],
+      "benefit": 10.9,
+      "score": 2.73,
+      "created_at": "2026-06-03T10:57:46.060517+00:00"
+    }
+  },
+  "dc_assignments": {
+    "UE-1": {
+      "anchor_gnb_id": "AnchorGNB-1",
+      "senb_id": "gNB-2",
+      "created_at": 1780484262.0102293
+    },
+    "UE-2": {
+      "anchor_gnb_id": "AnchorGNB-1",
+      "senb_id": "gNB-2",
+      "created_at": 1780484264.0407043
+    },
+    "UE-3": {
+      "anchor_gnb_id": "AnchorGNB-1",
+      "senb_id": "gNB-1",
+      "created_at": 1780484266.0602303
+    }
+  },
+  "candidate_ues": [],
+  "clusters": []
+}

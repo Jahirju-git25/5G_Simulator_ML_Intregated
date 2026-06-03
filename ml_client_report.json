@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-06-02T06:49:06.863391+00:00",
+  "stats": {
+    "evaluation_steps": 127,
+    "anchors_deployed": 1,
+    "cost_benefit_rejections": 1,
+    "false_positives": 0,
+    "errors": 0,
+    "total_ho_events": 45
+  },
+  "active_anchors": {
+    "AnchorGNB-1": {
+      "x": 317.0,
+      "y": 150.0,
+      "cluster_ues": [
+        "UE-1",
+        "UE-2",
+        "UE-3"
+      ],
+      "benefit": 5.3,
+      "score": 2.296,
+      "created_at": "2026-06-02T06:39:35.628543+00:00"
+    }
+  },
+  "candidate_ues": [],
+  "clusters": []
+}

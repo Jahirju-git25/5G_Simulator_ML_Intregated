@@ -1,0 +1,153 @@
+{
+  "generated_at": "2026-06-03T08:59:41.542375",
+  "sim_time_s": 34.9,
+  "kpi": {
+    "total_ho": 96,
+    "pp_events": 0,
+    "anchor_deployments": 0,
+    "dc_assignments": 0,
+    "false_anchor_rate": 0.0,
+    "cluster_detections": 0,
+    "eval_cycles": 10,
+    "figures_saved": 6
+  },
+  "network": {
+    "avg_throughput_mbps": 2461.18,
+    "avg_sinr_db": 14.05,
+    "avg_packet_loss_pct": 22.74
+  },
+  "active_anchors": {},
+  "dc_assignments": {},
+  "comparison": {
+    "baseline_tp": 4,
+    "baseline_fp": 2,
+    "baseline_fn": 10,
+    "baseline_tn": 71,
+    "precision": 0.6667,
+    "recall": 0.2857,
+    "f1_score": 0.4,
+    "ho_reduction_pct_per_ue": {
+      "UE-6": 100.0,
+      "UE-8": 100.0,
+      "UE-5": 100.0,
+      "UE-2": 100.0,
+      "UE-11": 100.0,
+      "UE-1": 100.0,
+      "UE-4": 100.0,
+      "UE-10": 100.0,
+      "UE-9": 100.0,
+      "UE-7": 100.0,
+      "UE-3": 100.0
+    },
+    "avg_ho_reduction_pct": 100.0
+  },
+  "detection_log": [
+    {
+      "time": 23.2,
+      "candidates": [
+        {
+          "ue_id": "UE-7",
+          "p_pp": 0.964
+        }
+      ],
+      "deployed": []
+    },
+    {
+      "time": 25.1,
+      "candidates": [
+        {
+          "ue_id": "UE-8",
+          "p_pp": 0.961
+        },
+        {
+          "ue_id": "UE-7",
+          "p_pp": 0.964
+        }
+      ],
+      "deployed": []
+    },
+    {
+      "time": 27.0,
+      "candidates": [
+        {
+          "ue_id": "UE-7",
+          "p_pp": 0.96
+        }
+      ],
+      "deployed": []
+    },
+    {
+      "time": 30.9,
+      "candidates": [
+        {
+          "ue_id": "UE-8",
+          "p_pp": 0.962
+        }
+      ],
+      "deployed": []
+    },
+    {
+      "time": 33.4,
+      "candidates": [
+        {
+          "ue_id": "UE-8",
+          "p_pp": 0.695
+        }
+      ],
+      "deployed": []
+    },
+    {
+      "time": 34.9,
+      "candidates": [
+        {
+          "ue_id": "UE-11",
+          "p_pp": 0.962
+        }
+      ],
+      "deployed": []
+    },
+    {
+      "time": 34.9,
+      "candidates": [
+        {
+          "ue_id": "UE-11",
+          "p_pp": 0.962
+        }
+      ],
+      "deployed": []
+    },
+    {
+      "time": 34.9,
+      "candidates": [
+        {
+          "ue_id": "UE-11",
+          "p_pp": 0.962
+        }
+      ],
+      "deployed": []
+    },
+    {
+      "time": 34.9,
+      "candidates": [
+        {
+          "ue_id": "UE-11",
+          "p_pp": 0.962
+        }
+      ],
+      "deployed": []
+    }
+  ],
+  "ho_history_sizes": {
+    "UE-3": 11,
+    "UE-4": 11,
+    "UE-5": 11,
+    "UE-6": 11,
+    "UE-10": 4,
+    "UE-9": 12,
+    "UE-8": 7,
+    "UE-1": 10,
+    "UE-11": 6,
+    "UE-2": 10,
+    "UE-7": 3
+  }
+}

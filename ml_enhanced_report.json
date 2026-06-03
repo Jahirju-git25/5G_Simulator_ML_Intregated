@@ -1,0 +1,140 @@
+{
+  "timestamp": "2026-06-03T10:28:00.526436+00:00",
+  "stats": {
+    "evaluation_steps": 6,
+    "anchors_deployed": 3,
+    "dc_assignments": 14,
+    "dc_smart_skipped": 0,
+    "cost_benefit_rejections": 0,
+    "errors": 0,
+    "total_ho_events": 170,
+    "hos_avoided": 0,
+    "figures_saved": 3
+  },
+  "ppp_threshold": 0.25,
+  "active_anchors": {
+    "AnchorGNB-1": {
+      "x": 317.0,
+      "y": 225.0,
+      "deployed_at": 7.2,
+      "triggered_ues": [
+        "UE-2",
+        "UE-3",
+        "UE-4",
+        "UE-5",
+        "UE-6",
+        "UE-7"
+      ],
+      "assigned_ues": [
+        "UE-2",
+        "UE-3",
+        "UE-4",
+        "UE-5",
+        "UE-6",
+        "UE-7"
+      ]
+    },
+    "AnchorGNB-2": {
+      "x": 650.0,
+      "y": 475.0,
+      "deployed_at": 27.4,
+      "triggered_ues": [
+        "UE-10",
+        "UE-11",
+        "UE-8",
+        "UE-9"
+      ],
+      "assigned_ues": [
+        "UE-10",
+        "UE-11",
+        "UE-8",
+        "UE-9"
+      ]
+    },
+    "AnchorGNB-3": {
+      "x": 317.0,
+      "y": 475.0,
+      "deployed_at": 31.1,
+      "triggered_ues": [
+        "UE-10",
+        "UE-11",
+        "UE-8",
+        "UE-9"
+      ],
+      "assigned_ues": [
+        "UE-10",
+        "UE-11",
+        "UE-8",
+        "UE-9"
+      ]
+    }
+  },
+  "dc_assignments": {},
+  "candidate_ues": [
+    {
+      "ue_id": "UE-1",
+      "x": 317.0,
+      "y": 50.0,
+      "p_pp": 0.4131737468061572,
+      "ho_count": 18,
+      "sim_time": 31.1,
+      "serving": "AnchorGNB-1"
+    },
+    {
+      "ue_id": "UE-10",
+      "x": 317.0,
+      "y": 500.0,
+      "p_pp": 0.448752255854738,
+      "ho_count": 16,
+      "sim_time": 31.1,
+      "serving": "AnchorGNB-1"
+    },
+    {
+      "ue_id": "UE-11",
+      "x": 317.0,
+      "y": 550.0,
+      "p_pp": 0.3994900463732495,
+      "ho_count": 21,
+      "sim_time": 31.1,
+      "serving": "gNB-3"
+    },
+    {
+      "ue_id": "UE-8",
+      "x": 317.0,
+      "y": 400.0,
+      "p_pp": 0.41874610774223975,
+      "ho_count": 15,
+      "sim_time": 31.1,
+      "serving": "AnchorGNB-1"
+    },
+    {
+      "ue_id": "UE-9",
+      "x": 317.0,
+      "y": 450.0,
+      "p_pp": 0.3237334372871778,
+      "ho_count": 14,
+      "sim_time": 31.1,
+      "serving": "AnchorGNB-1"
+    }
+  ],
+  "clusters": [
+    [
+      "UE-10",
+      "UE-11",
+      "UE-8",
+      "UE-9"
+    ]
+  ],
+  "assigned_ues": [
+    "UE-7",
+    "UE-8",
+    "UE-2",
+    "UE-11",
+    "UE-3",
+    "UE-9",
+    "UE-6",
+    "UE-4",
+    "UE-10",
+    "UE-5"
+  ]
+}
