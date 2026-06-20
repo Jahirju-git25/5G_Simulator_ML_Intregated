@@ -1,70 +1,47 @@
 {
-  "timestamp": "2026-06-03T10:28:00.526436+00:00",
+  "timestamp": "2026-06-17T13:12:52.121014+00:00",
   "stats": {
-    "evaluation_steps": 6,
-    "anchors_deployed": 3,
-    "dc_assignments": 14,
-    "dc_smart_skipped": 0,
+    "evaluation_steps": 7,
+    "anchors_deployed": 2,
+    "dc_assignments": 6,
+    "dc_smart_skipped": 2,
     "cost_benefit_rejections": 0,
     "errors": 0,
-    "total_ho_events": 170,
+    "total_ho_events": 141,
     "hos_avoided": 0,
-    "figures_saved": 3
+    "figures_saved": 0
   },
-  "ppp_threshold": 0.25,
+  "ppp_threshold": 0.5,
   "active_anchors": {
     "AnchorGNB-1": {
-      "x": 317.0,
-      "y": 225.0,
-      "deployed_at": 7.2,
+      "x": 444.5,
+      "y": 220.0,
+      "deployed_at": 8.0,
       "triggered_ues": [
+        "UE-1",
+        "UE-11",
         "UE-2",
-        "UE-3",
-        "UE-4",
-        "UE-5",
-        "UE-6",
-        "UE-7"
+        "UE-3"
       ],
       "assigned_ues": [
+        "UE-1",
+        "UE-11",
         "UE-2",
-        "UE-3",
-        "UE-4",
-        "UE-5",
-        "UE-6",
-        "UE-7"
+        "UE-3"
       ]
     },
     "AnchorGNB-2": {
-      "x": 650.0,
-      "y": 475.0,
-      "deployed_at": 27.4,
+      "x": 226.0,
+      "y": 250.0,
+      "deployed_at": 21.7,
       "triggered_ues": [
         "UE-10",
-        "UE-11",
+        "UE-7",
         "UE-8",
         "UE-9"
       ],
       "assigned_ues": [
         "UE-10",
-        "UE-11",
-        "UE-8",
-        "UE-9"
-      ]
-    },
-    "AnchorGNB-3": {
-      "x": 317.0,
-      "y": 475.0,
-      "deployed_at": 31.1,
-      "triggered_ues": [
-        "UE-10",
-        "UE-11",
-        "UE-8",
-        "UE-9"
-      ],
-      "assigned_ues": [
-        "UE-10",
-        "UE-11",
-        "UE-8",
         "UE-9"
       ]
     }
@@ -72,69 +49,85 @@
   "dc_assignments": {},
   "candidate_ues": [
     {
-      "ue_id": "UE-1",
-      "x": 317.0,
-      "y": 50.0,
-      "p_pp": 0.4131737468061572,
-      "ho_count": 18,
-      "sim_time": 31.1,
-      "serving": "AnchorGNB-1"
-    },
-    {
       "ue_id": "UE-10",
-      "x": 317.0,
-      "y": 500.0,
-      "p_pp": 0.448752255854738,
-      "ho_count": 16,
-      "sim_time": 31.1,
+      "x": 200.0,
+      "y": 330.0,
+      "p_pp": 0.9038656142481273,
+      "ho_count": 9,
+      "sim_time": 23.0,
+      "serving": "gNB-3"
+    },
+    {
+      "ue_id": "UE-4",
+      "x": 316.0,
+      "y": 450.0,
+      "p_pp": 0.7377743018815832,
+      "ho_count": 14,
+      "sim_time": 23.0,
       "serving": "AnchorGNB-1"
     },
     {
-      "ue_id": "UE-11",
-      "x": 317.0,
-      "y": 550.0,
-      "p_pp": 0.3994900463732495,
+      "ue_id": "UE-5",
+      "x": 316.0,
+      "y": 450.0,
+      "p_pp": 0.7377743018815832,
+      "ho_count": 18,
+      "sim_time": 23.0,
+      "serving": "AnchorGNB-1"
+    },
+    {
+      "ue_id": "UE-6",
+      "x": 316.0,
+      "y": 450.0,
+      "p_pp": 0.9038656142481273,
       "ho_count": 21,
-      "sim_time": 31.1,
+      "sim_time": 23.0,
+      "serving": "AnchorGNB-1"
+    },
+    {
+      "ue_id": "UE-7",
+      "x": 160.0,
+      "y": 376.0,
+      "p_pp": 0.7377743018815832,
+      "ho_count": 6,
+      "sim_time": 23.0,
       "serving": "gNB-3"
     },
     {
       "ue_id": "UE-8",
-      "x": 317.0,
-      "y": 400.0,
-      "p_pp": 0.41874610774223975,
-      "ho_count": 15,
-      "sim_time": 31.1,
+      "x": 420.0,
+      "y": 151.0,
+      "p_pp": 0.9038656142481273,
+      "ho_count": 7,
+      "sim_time": 23.0,
       "serving": "AnchorGNB-1"
     },
     {
       "ue_id": "UE-9",
-      "x": 317.0,
-      "y": 450.0,
-      "p_pp": 0.3237334372871778,
-      "ho_count": 14,
-      "sim_time": 31.1,
+      "x": 215.0,
+      "y": 300.0,
+      "p_pp": 0.9038656142481273,
+      "ho_count": 19,
+      "sim_time": 23.0,
       "serving": "AnchorGNB-1"
     }
   ],
   "clusters": [
     [
       "UE-10",
-      "UE-11",
-      "UE-8",
+      "UE-4",
+      "UE-5",
+      "UE-6",
+      "UE-7",
       "UE-9"
     ]
   ],
   "assigned_ues": [
-    "UE-7",
-    "UE-8",
-    "UE-2",
-    "UE-11",
     "UE-3",
-    "UE-9",
-    "UE-6",
-    "UE-4",
     "UE-10",
-    "UE-5"
+    "UE-1",
+    "UE-11",
+    "UE-2",
+    "UE-9"
   ]
 }

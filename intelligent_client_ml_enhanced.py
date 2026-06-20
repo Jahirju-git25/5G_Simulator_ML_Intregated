@@ -62,6 +62,8 @@ class TrainedPingPongDetector:
         """Load pre-trained sklearn model and scaler."""
         self.model = None
         self.scaler = None
+        self.model_loaded = False
+        self.scaler_loaded = False
         # Match the exact feature names the model was trained with
         self.feature_names = [
             'f_HO', 'sigma2_RSRP', 'R_rev',
@@ -71,18 +73,26 @@ class TrainedPingPongDetector:
         try:
             with open(model_path, 'rb') as f:
                 self.model = pickle.load(f)
-            self._log(f"[OK] Loaded trained model from {model_path}")
+            self.model_loaded = True
+            self._log(f"[OK] ✓ Loaded trained model from {model_path}")
+            self._log(f"     Model type: {type(self.model).__name__}")
+        except FileNotFoundError:
+            self._log(f"[ERROR] Model file not found: {model_path}")
         except Exception as e:
             self._log(f"[ERROR] Failed to load model: {e}")
         
         try:
             with open(scaler_path, 'rb') as f:
                 self.scaler = pickle.load(f)
-            self._log(f"[OK] Loaded scaler from {scaler_path}")
+            self.scaler_loaded = True
+            self._log(f"[OK] ✓ Loaded scaler from {scaler_path}")
+            self._log(f"     Scaler type: {type(self.scaler).__name__}")
+        except FileNotFoundError:
+            self._log(f"[ERROR] Scaler file not found: {scaler_path}")
         except Exception as e:
             self._log(f"[ERROR] Failed to load scaler: {e}")
     
-    def predict_proba(self, features: List[float]) -> float:
+    def predict_proba(self, features: List[float], ue_id: str = None) -> float:
         """Predict ping-pong probability using trained model."""
         if self.model is None or self.scaler is None:
             return 0.0
@@ -91,10 +101,25 @@ class TrainedPingPongDetector:
             # Scale features and make prediction
             # Pass as 2D array to avoid sklearn warnings
             features_array = np.array([features], dtype=np.float64)
+            
+            # Check if scaler expects different number of features
+            if hasattr(self.scaler, 'n_features_in_'):
+                expected_features = self.scaler.n_features_in_
+                if len(features) < expected_features:
+                    # Pad with zeros for missing features
+                    padding = np.zeros((features_array.shape[0], expected_features - len(features)))
+                    features_array = np.hstack([features_array, padding])
+            
             features_scaled = self.scaler.transform(features_array)
             
             # Predict probability
             proba = self.model.predict_proba(features_scaled)[0][1]
+            
+            # Log prediction details with UE ID if provided
+            if ue_id:
+                self._log(f"[PRED] UE {ue_id}: Features={[f'{f:.3f}' for f in features]} → "
+                         f"Scaled={[f'{s:.3f}' for s in features_scaled[0][:5]]} → P_pp={proba:.4f}")
+            
             return float(proba)
         except Exception as e:
             self._log(f"[ERROR] Prediction error: {e}")
@@ -166,11 +191,17 @@ class MLEnhancedIntelligentDetector:
     def run(self):
         """Main detection loop."""
         self._log(f"[OK] ML-ENHANCED Detector started (Trained Model)")
-        self._log(f"  Model: {self.ml_model.model}")
-        self._log(f"  Scaler: {self.ml_model.scaler}")
-        self._log(f"  RSRP improvement threshold: {self.rsrp_threshold_improvement:.1f} dB")
-        self._log(f"  Max distance to anchor: {self.min_distance_to_anchor:.0f} pixels")
-        self._log(f"  P_pp threshold: {self.ppp_threshold}, Visualization: {self.enable_visualization}")
+        self._log(f"═" * 70)
+        self._log(f"  Model Status:")
+        self._log(f"    • Model Loaded: {self.ml_model.model_loaded} ({type(self.ml_model.model).__name__ if self.ml_model.model else 'None'})")
+        self._log(f"    • Scaler Loaded: {self.ml_model.scaler_loaded} ({type(self.ml_model.scaler).__name__ if self.ml_model.scaler else 'None'})")
+        self._log(f"  Detection Parameters:")
+        self._log(f"    • P_pp threshold: {self.ppp_threshold}")
+        self._log(f"    • HO window: {self.window_s}s")
+        self._log(f"    • RSRP improvement threshold: {self.rsrp_threshold_improvement:.1f} dB")
+        self._log(f"    • Max distance to anchor: {self.min_distance_to_anchor:.0f} pixels")
+        self._log(f"    • Visualization: {self.enable_visualization}")
+        self._log(f"═" * 70)
         
         i = 0
         while self.max_iterations <= 0 or i < self.max_iterations:
@@ -242,10 +273,16 @@ class MLEnhancedIntelligentDetector:
                 continue
             
             features = self._extract_features(events, self.window_s)
-            p_pp = self.ml_model.predict_proba(features["normalized"])
+            p_pp = self.ml_model.predict_proba(features["normalized"], ue_id=uid)
             
             if self.verbose:
-                self._log(f"[DEBUG] {uid}: HOs={len(events)}, P_pp={p_pp:.3f} (threshold={self.ppp_threshold})")
+                self._log(f"[SCORE] {uid}: HOs={len(events)}, "
+                         f"HO_freq={features['ho_frequency']:.3f}, "
+                         f"RSRP_var={features['rsrp_variance']:.3f}, "
+                         f"Rev_ratio={features['reversal_ratio']:.3f}, "
+                         f"Dir_flip={features['direction_flip']:.3f}, "
+                         f"Osc={features['oscillation']:.3f} → "
+                         f"P_pp={p_pp:.4f} (threshold={self.ppp_threshold})")
             
             if p_pp >= self.ppp_threshold:
                 candidates.append({
@@ -638,8 +675,8 @@ def parse_args():
                        help="Polling interval in seconds")
     parser.add_argument("--window", type=float, default=25.0, 
                        help="HO sliding window in seconds [INCREASED to 25s for 45s pattern]")
-    parser.add_argument("--ppp-threshold", type=float, default=0.25, 
-                       help="P_pp >= threshold for anchor deployment [LOWERED to 0.25 - distributed UEs don't reach 0.51]")
+    parser.add_argument("--ppp-threshold", type=float, default=0.5, 
+                       help="P_pp >= threshold for anchor deployment [SET to 0.5]")
     parser.add_argument("--cluster-threshold", type=float, default=0.5, 
                        help="Cluster score threshold [LOWERED to 0.5]")
     parser.add_argument("--cluster-radius", type=float, default=270.0, 
@@ -654,7 +691,7 @@ def parse_args():
                        help="Cost per AnchorGNB deployment")
     
     # ML model parameters
-    parser.add_argument("--model-path", default="pingpong_model.pkl", 
+    parser.add_argument("--model-path", default="dt_model.pkl", 
                        help="Path to trained logistic regression model")
     parser.add_argument("--scaler-path", default="scaler.pkl", 
                        help="Path to feature scaler")
